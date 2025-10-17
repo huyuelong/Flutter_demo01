@@ -19,6 +19,10 @@ void main(List<String> args) {
               MyText(),
               MyImage(),
               Circular(),
+              SizedBox(height: 20), // 垂直间距
+              ClipImage(),
+              SizedBox(height: 20),
+              LocalImage()
             ],
           ),
         ),
@@ -135,6 +139,7 @@ class MyImage extends StatelessWidget {
   }
 }
 
+// 实现圆形图片
 class Circular extends StatelessWidget {
   const Circular({super.key});
 
@@ -154,6 +159,40 @@ class Circular extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
+    );
+  }
+}
+
+// 实现圆形图片 使用 ClipOval
+class ClipImage extends StatelessWidget {
+  const ClipImage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipOval(
+      child: Image.network(
+        "https://www.itying.com/themes/itying/images/ionic4.png",
+        width: 200,
+        height: 200,
+        fit: BoxFit.cover,
+      ),
+    );
+  }
+}
+
+// 加载本地图片
+class LocalImage extends StatelessWidget {
+  const LocalImage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 200,
+      width: 200,
+      decoration: const BoxDecoration(
+        color: Colors.yellow
+      ),
+      child: Image.asset("images/kunkun01.jpg", fit: BoxFit.cover),
     );
   }
 }
