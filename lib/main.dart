@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './myFont.dart';
 
 void main(List<String> args) {
   runApp(
@@ -22,7 +23,9 @@ void main(List<String> args) {
               SizedBox(height: 20), // 垂直间距
               ClipImage(),
               SizedBox(height: 20),
-              LocalImage()
+              LocalImage(),
+              SizedBox(height: 20),
+              MyIcon(),
             ],
           ),
         ),
@@ -189,10 +192,51 @@ class LocalImage extends StatelessWidget {
     return Container(
       height: 200,
       width: 200,
-      decoration: const BoxDecoration(
-        color: Colors.yellow
-      ),
+      decoration: const BoxDecoration(color: Colors.yellow),
       child: Image.asset("images/kunkun01.jpg", fit: BoxFit.cover),
+    );
+  }
+}
+
+class MyIcon extends StatelessWidget {
+  const MyIcon({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center, // 垂直居中
+      children: [
+        // 第一行图标
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center, // 水平居中
+          children: const [
+            Icon(Icons.home, size: 40, color: Colors.red),
+            Icon(Icons.settings, size: 40, color: Colors.purple),
+            Icon(Icons.search, size: 40, color: Colors.yellow),
+            Icon(Icons.personal_injury_outlined, size: 40, color: Colors.blue),
+            Icon(Icons.category, size: 40, color: Colors.green),
+          ],
+        ),
+
+        const SizedBox(height: 20), // 两行之间的间距
+        // 第二行图标
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Icon(MyFont.book, size: 40, color: Colors.orange),
+            Icon(MyFont.weixin, size: 40, color: Colors.green),
+            Icon(MyFont.cart, size: 40, color: Colors.black),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Icon(MyFont.user, size: 40, color: Colors.orange),
+            Icon(MyFont.address, size: 40, color: Colors.green),
+            Icon(MyFont.category, size: 40, color: Colors.black),
+          ],
+        ),
+      ],
     );
   }
 }
