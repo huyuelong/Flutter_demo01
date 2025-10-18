@@ -13,6 +13,7 @@ void main(List<String> args) {
           backgroundColor: Colors.purple.shade300,
         ),
         body: SingleChildScrollView(
+          padding: const EdgeInsets.all(10),
           child: Column(
             children: const [
               MyApp(),
@@ -26,6 +27,14 @@ void main(List<String> args) {
               LocalImage(),
               SizedBox(height: 20),
               MyIcon(),
+              SizedBox(height: 20),
+              MyListView(),
+              SizedBox(height: 20),
+              MyListView2(),
+              SizedBox(height: 20),
+              MyListView3(),
+              SizedBox(height: 20),
+              MyListView4(),
             ],
           ),
         ),
@@ -237,6 +246,171 @@ class MyIcon extends StatelessWidget {
           ],
         ),
       ],
+    );
+  }
+}
+
+// 垂直列表
+class MyListView extends StatelessWidget {
+  const MyListView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      shrinkWrap: true, // 让ListView只占用实际高度
+      physics: NeverScrollableScrollPhysics(), // 禁用内部滚动（外层已滚动）
+      children: const <Widget>[
+        ListTile(
+          leading: Icon(Icons.assignment, color: Colors.red),
+          title: Text("全部订单"),
+        ),
+        Divider(),
+        ListTile(
+          leading: Icon(Icons.payment, color: Colors.green),
+          title: Text("待付款"),
+        ),
+        ListTile(
+          leading: Icon(Icons.local_car_wash, color: Colors.orange),
+          title: Text("待收货"),
+        ),
+        ListTile(
+          leading: Icon(Icons.favorite, color: Colors.lightGreen),
+          title: Text("我的收藏"),
+          trailing: Icon(Icons.chevron_right_sharp),
+        ),
+        Divider(),
+        ListTile(
+          leading: Icon(Icons.people, color: Colors.black54),
+          title: Text("在线客服"),
+          trailing: Icon(Icons.chevron_right_sharp),
+        ),
+        Divider(),
+      ],
+    );
+  }
+}
+
+// 垂直图文列表
+class MyListView2 extends StatelessWidget {
+  const MyListView2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      shrinkWrap: true, // 让ListView只占用实际高度
+      physics: NeverScrollableScrollPhysics(), // 禁用内部滚动（外层已滚动）
+      children: <Widget>[
+        ListTile(
+          leading: Image.network("https://www.itying.com/images/flutter/1.png"),
+          title: const Text('华北黄淮高温雨今起强势登场'),
+          subtitle: const Text("中国天气网讯 21日开始，华北黄淮高温雨今起强势登场"),
+        ),
+        const Divider(),
+        ListTile(
+          leading: Image.network("https://www.itying.com/images/flutter/2.png"),
+          title: const Text('保监局50天开32罚单 “断供”违规资金为房市降温'),
+          subtitle: const Text("中国天气网讯 保监局50天开32罚单 “断供”违规资金为房市降温"),
+        ),
+        const Divider(),
+        ListTile(
+          title: const Text('华北黄淮高温雨今起强势登场'),
+          subtitle: const Text("中国天气网讯 21日开始，华北黄淮高温雨今起强势登场"),
+          trailing: Image.network(
+            "https://www.itying.com/images/flutter/3.png",
+          ),
+        ),
+        const Divider(),
+      ],
+    );
+  }
+}
+
+// 垂直图文列表2
+class MyListView3 extends StatelessWidget {
+  const MyListView3({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      shrinkWrap: true, // 让ListView只占用实际高度
+      physics: NeverScrollableScrollPhysics(), // 禁用内部滚动（外层已滚动）
+      children: <Widget>[
+        Image.network("https://www.itying.com/images/flutter/1.png"),
+        Container(
+          padding: const EdgeInsets.fromLTRB(0, 6, 0, 0),
+          height: 44,
+          child: const Text(
+            "我是一个标题",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 22),
+          ),
+        ),
+        Image.network("https://www.itying.com/images/flutter/2.png"),
+        Container(
+          padding: const EdgeInsets.fromLTRB(0, 6, 0, 0),
+          height: 44,
+          child: const Text(
+            "我是一个标题",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 22),
+          ),
+        ),
+        Image.network("https://www.itying.com/images/flutter/3.png"),
+        Container(
+          padding: const EdgeInsets.fromLTRB(0, 6, 0, 0),
+          height: 44,
+          child: const Text(
+            "我是一个标题",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 22),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// 垂直图文列表2
+class MyListView4 extends StatelessWidget {
+  const MyListView4({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 140,
+      child: ListView(
+        shrinkWrap: true, // 让ListView只占用实际高度
+        physics:
+            const ClampingScrollPhysics(), // 在嵌套滚动（比如外层 SingleChildScrollView 垂直滚动，内层水平滚动）时，可以让内层 ListView 正常响应水平滑动手势。
+        scrollDirection: Axis.horizontal,
+        children: <Widget>[
+          Container(
+            width: 120,
+            decoration: const BoxDecoration(color: Colors.red),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 100,
+                  child: Image.network("https://www.itying.com/images/flutter/1.png", fit: BoxFit.cover),
+                ),
+                const Text("文字")
+              ],
+            ),
+          ),
+          Container(
+            width: 120,
+            decoration: const BoxDecoration(color: Colors.blue),
+          ),
+          Container(
+            width: 120,
+            decoration: const BoxDecoration(color: Colors.green),
+          ),
+          Container(
+            width: 120,
+            decoration: const BoxDecoration(color: Colors.yellow),
+          ),
+        ],
+      ),
     );
   }
 }
